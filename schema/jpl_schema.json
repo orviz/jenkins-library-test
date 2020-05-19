@@ -1,28 +1,21 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
+        "sqa_criterion_repo": {
+        	"type": "object",
+            "minProperties": 1,
+            "propertyNames": {
+    			"pattern": "[a-z0-9_-]*"
+  			}
+        },
         "sqa_criterion": {
             "type": "object",
+            "minProperties": 1,
             "properties": {
-                "repo": {
-                    "type": "string",
-                    "format": "uri"
-                },
-                "branch": {
-                    "type": "string"
-                },
-                "dockerhub": {
-                    "type": "string"
-                },
-                "dockertag": {
-                    "type": "string"
-                }
+                "repos": { "$ref": "#/definitions/sqa_criterion_repo" }
             },
-            #"required": [
-            #    "title",
-            #    "url",
-            #    "inputs"
-            #]
+            "required": ["repos"],
+            "additionalProperties": false
         }
     },
     "type": "object",
