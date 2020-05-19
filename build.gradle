@@ -1,0 +1,14 @@
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = 'hello.HelloWorld'
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.14'
+    compile 'com.networknt:json-schema-validator:1.0.29'
+    compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.10.1'
+}

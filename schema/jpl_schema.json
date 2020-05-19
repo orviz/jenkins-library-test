@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "sqa_criterion": {
+            "type": "object",
+            "properties": {
+                "repo": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "dockerhub": {
+                    "type": "string"
+                },
+                "dockertag": {
+                    "type": "string"
+                }
+            },
+            #"required": [
+            #    "title",
+            #    "url",
+            #    "inputs"
+            #]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "sqa-criteria": {
+            "description": "Contains all the required SQA baseline's criteria definitions",
+            "type": "object",
+            "minProperties": 1,
+            "properties": {
+                "qc-style": { "$ref": "#/definitions/sqa_criterion" },
+                "qc-coverage": { "$ref": "#/definitions/sqa_criterion" },
+                "qc-functional": { "$ref": "#/definitions/sqa_criterion" },
+                "qc-security": { "$ref": "#/definitions/sqa_criterion" },
+                "qc-doc": { "$ref": "#/definitions/sqa_criterion" }
+            },
+            "additionalProperties": false
+        },
+        "required": [
+            "sqa-criteria"
+        ],
+        "additionalProperties": false
+    }
+}
