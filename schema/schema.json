@@ -1,6 +1,15 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
+        "tox": {
+            "type": "object",
+            "properties": {
+                "testenv": { "type": "string" },
+                "tox_file": { "type": "string" }
+            },
+            "required": ["testenv"],
+            "additionalProperties": false
+        },
         "repo_settings": {
             "type": "object",
             "properties": {
