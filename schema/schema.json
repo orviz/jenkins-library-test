@@ -14,7 +14,12 @@
         "tox": {
             "type": "object",
             "properties": {
-                "testenv": { "type": "string" },
+                "testenv": { 
+                    "anyOf": [
+                        { "type": "string" },
+                        { "type": "array" }
+                    ]
+                },
                 "tox_file": { "type": "string" }
             },
             "required": ["testenv"],
