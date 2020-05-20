@@ -2,34 +2,26 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
         "repo_settings": {
-        	"type": "object",
+            "type": "object",
             "properties": {
             	"container": { "type": "string" },
                 "commands": { "type": "array" },
                 "tox": { "type": "string" }
             },
-  			"oneOf":[
-              	{
-      				"required": [
-        				"commands"
-      				]
-                },
-    			{
-      				"required": [
-        				"tox"
-      				]
-    			}
-  			],
+            "oneOf":[
+                { "required": [ "commands" ]},
+                { "required": [ "tox" ]}
+            ],
             "additionalProperties": false,
             "dependencies": {
-    			"commands": ["container"]
-  			}
+                "commands": ["container"]
+            }
         },
         "sqa_criterion_repo": {
-        	"type": "object",
+            "type": "object",
             "minProperties": 1,
-			"patternProperties": {
-				"[a-z0-9_-]*": { "$ref": "#/definitions/repo_settings" }
+            "patternProperties": {
+                "[a-z0-9_-]*": { "$ref": "#/definitions/repo_settings" }
             }
         },
         "sqa_criterion": {
