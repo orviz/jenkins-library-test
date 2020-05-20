@@ -23,9 +23,9 @@
         "repo_settings": {
             "type": "object",
             "properties": {
-            	"container": { "type": "string" },
+                "container": { "type": "string" },
                 "commands": { "type": "array" },
-                "tox": { "type": "string" }
+                "tox": { "$ref": "#/definitions/tox" }
             },
             "oneOf":[
                 { "required": [ "commands" ]},
