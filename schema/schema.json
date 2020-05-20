@@ -1,99 +1,41 @@
 {
-  "definitions": {},
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://example.com/root.json",
-  "type": "object",
-  "title": "The Root Schema",
-  "required": [
-    "service"
-  ],
-  "properties": {
-    "service": {
-      "$id": "#/properties/service",
-      "type": "object",
-      "title": "The Service Schema",
-      "required": [
-        "api",
-        "functions"
-      ],
-      "properties": {
-        "api": {
-          "$id": "#/properties/service/properties/api",
-          "type": "object",
-          "title": "The Api Schema",
-          "required": [
-            "git"
-          ],
-          "properties": {
-            "git": {
-              "$id": "#/properties/service/properties/api/properties/git",
-              "type": "string",
-              "title": "The Git Schema",
-              "default": "",
-              "examples": [
-                "abc:xxy"
-              ],
-              "pattern": "^(.*)$"
-            }
-          }
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "sqa_criterion_repo": {
+        	"type": "object",
+            "minProperties": 1,
+            "propertyNames": {
+    			"pattern": "[a-z0-9_-]*"
+  			}
         },
-        "functions": {
-          "$id": "#/properties/service/properties/functions",
-          "type": "array",
-          "title": "The Functions Schema",
-          "items": {
-            "$id": "#/properties/service/properties/functions/items",
+        "sqa_criterion": {
             "type": "object",
-            "title": "The Items Schema",
-            "required": [
-              "name",
-              "git",
-              "memoryInMbs",
-              "cpu"
-            ],
+            "minProperties": 1,
             "properties": {
-              "name": {
-                "$id": "#/properties/service/properties/functions/items/properties/name",
-                "type": "string",
-                "title": "The Name Schema",
-                "default": "",
-                "examples": [
-                  "one"
-                ],
-                "pattern": "^(.*)$"
-              },
-              "git": {
-                "$id": "#/properties/service/properties/functions/items/properties/git",
-                "type": "string",
-                "title": "The Git Schema",
-                "default": "",
-                "examples": [
-                  "abc/myfunction1"
-                ],
-                "pattern": "^(.*)$"
-              },
-              "memoryInMbs": {
-                "$id": "#/properties/service/properties/functions/items/properties/memoryInMbs",
-                "type": "integer",
-                "title": "The Memoryinmbs Schema",
-                "default": 0,
-                "examples": [
-                  400
-                ]
-              },
-              "cpu": {
-                "$id": "#/properties/service/properties/functions/items/properties/cpu",
-                "type": "integer",
-                "title": "The Cpu Schema",
-                "default": 0,
-                "examples": [
-                  2
-                ]
-              }
-            }
-          }
+                "repos": { "$ref": "#/definitions/sqa_criterion_repo" }
+            },
+            "required": ["repos"],
+            "additionalProperties": false
         }
-      }
+    },
+    "type": "object",
+    "properties": {
+        "sqa-criteria": {
+            "description": "Contains all the required SQA baseline's criteria definitions",
+            "type": "object",
+            "minProperties": 1,
+            "properties": {
+                "qc-style": { "$ref": "#/definitions/sqa_criterion" },
+                "qc-coverage": { "$ref": "#/definitions/sqa_criterion" },
+                "qc-functional": { "$ref": "#/definitions/sqa_criterion" },
+                "qc-security": { "$ref": "#/definitions/sqa_criterion" },
+                "qc-doc": { "$ref": "#/definitions/sqa_criterion" }
+            },
+            "additionalProperties": false
+        },
+        "required": [
+            "sqa-criteria"
+        ],
+        "additionalProperties": false
     }
-  }
 }
