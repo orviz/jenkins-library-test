@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
-        "config_project_repo": {
+        "config_repo_settings": {
             "type": "object",
             "properties": {
                 "repo": { "type": "string", "format": "uri" },
@@ -10,6 +10,13 @@
                 "dockertag": { "type": "string" }
             },
             "required": ["repo"]
+        },
+        "config_repo": {
+            "type": "object",
+            "minProperties": 1,
+            "patternProperties": {
+                "[a-z0-9_-]*": { "$ref": "#/definitions/config_repo_settings" }
+            }
         },
         "tox": {
             "type": "object",
@@ -66,7 +73,7 @@
             "properties": {
                 "node_agent": { "type": "string" },
                 "deploy_template": { "type": "string" },
-                "project_repos": { "$ref": "#/definitions/config_project_repo" }
+                "project_repos": { "$ref": "#/definitions/config_repo" }
             },
             "required": ["project_repos"]
         },
