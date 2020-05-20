@@ -97,6 +97,11 @@
                 "pattern": "^[A-Z]{1}[A-Z0-9_]*"
             }
         },
+        "timeout": {
+            "description": "Sets the timeout for the pipeline execution",
+            "type": "integer",
+            minimum: 0
+        },
         "required": [
             "config",
             "sqa-criteria"
