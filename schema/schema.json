@@ -78,6 +78,13 @@
             },
             "additionalProperties": false
         },
+        "environment": {
+            "description": "Sets the environment variables required to execute the previouos SQA criteria blocks",
+            "type": "object",
+            "patternProperties": {
+                "^[A-Z][A-Z0-9_]*": { "type": "string" }
+            }
+        },
         "required": [
             "config",
             "sqa-criteria"
